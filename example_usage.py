@@ -14,8 +14,10 @@ if __name__ == '__main__':
     # Initialize object used to query the database
     db = FloatQueries(token)
 
-    # The returned data format can be set to either "csv" or "raw". It is "csv" by default
-    db.result_format = "csv"
+    # Variables that modify the default behaviour of the queries
+    db.result_format = "standard"  # Options: standard, csv, pandas, raw. Default: standard
+    db.drop_unused_columns = True  # Doesn't request the _start and _stop columns if set to True
+    db.calculate_solar_angles = True  # Includes Azimuth and Tilt in the dataset when set to True
 
     # Create time-strings using helper methods
     start_time = db.to_query_date_string(day=1, month=11, year=2021, hour=4, minutes=0)
@@ -87,7 +89,15 @@ if __name__ == '__main__':
     print(f"{float_data_query}\n")
     float_data = db.send_query(float_data_query)
 
-    # Write returned data to file
-    with open('data/temperatures.csv', 'w') as f:
-        for line in temperatures:
-            f.write(f'{", ".join(line)}\n')
+    all_data_query = db.create_floats_query("proto3", ["f6", "f18"], start_time_window, end_time_window,
+                                            window_period="1h")
+    print(f"{all_data_query}\n")
+    all_data = db.send_query(all_data_query)
+
+    if db.result_format == "standard":
+        print(all_data.to_string)
+
+        orientations.to_csv('data/orientations.csv')
+        temperatures.to_csv('data/temperatures.csv')
+        float_data.to_csv('data/f18.csv')
+        all_data.to_csv('data/database.csv')
