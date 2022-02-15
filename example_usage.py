@@ -1,3 +1,4 @@
+import os
 import sys
 
 from float_queries import FloatQueries
@@ -96,6 +97,9 @@ if __name__ == '__main__':
 
     if db.result_format == "standard":
         print(all_data.to_string)
+
+        if not os.path.exists('data'):
+            os.makedirs('data')
 
         orientations.to_csv('data/orientations.csv')
         temperatures.to_csv('data/temperatures.csv')
