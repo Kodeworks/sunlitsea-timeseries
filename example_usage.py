@@ -105,3 +105,4 @@ if __name__ == '__main__':
         temperatures.to_csv('data/temperatures.csv')
         float_data.to_csv('data/f18.csv')
         all_data.to_csv('data/database.csv')
+

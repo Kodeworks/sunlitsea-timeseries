@@ -13,7 +13,12 @@ class FloatQueries(InfluxBase):
 
     installation_id_to_float_ids = {
         "proto3": ["f6", "f18"],
-        "testRig": ["f1", "f2", "f3", "f5"]
+        "proto5": ["f14", "f20", "f21", "f8"],
+        "proto6": ["f1", "f2", "f3", "f5"],
+        "testRig": ["f91", "f92", "f93", "f95"],
+        "DAC1": ["f12"],
+        "STT": ["f24", "f17", "f23"]
+
     }
 
     def __init__(self, token, org="Kodeworks", url="https://ts.sunlitsea.no/"):
