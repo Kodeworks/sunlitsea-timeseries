@@ -136,3 +136,4 @@ dmypy.json
 
 # Saved CSV files
 /data
+/STT

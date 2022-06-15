@@ -16,7 +16,7 @@ class FloatQueries(InfluxBase):
         "proto5": ["f14", "f20", "f21", "f8"],
         "proto6": ["f1", "f2", "f3", "f5"],
         "testRig": ["f91", "f92", "f93", "f95"],
-        "DAC1": ["f12"],
+        "DAC1": ["f25"],
         "STT": ["f24", "f17", "f23"]
 
     }
@@ -37,6 +37,10 @@ class FloatQueries(InfluxBase):
     @staticmethod
     def to_query_date_string(day, month, year, hour=0, minutes=0, seconds=0):
         return f"{year:04d}-{month:02d}-{day:02d}T{hour:02d}:{minutes:02d}:{seconds:02d}Z"
+
+    @staticmethod
+    def datetime_to_query_date_string(datetime):
+        return datetime.strftime('%Y-%m-%dT%H:%M:%SZ')
 
     @staticmethod
     def custom_sort_columns(arr):
