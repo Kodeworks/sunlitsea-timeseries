@@ -38,7 +38,7 @@ cropped_times = {}
 df = pd.read_csv("dataset_download_times.csv", sep=", ", engine='python')
 for time in "start_time", "end_time":
     df[time] = np.asarray(
-        list(datetime.strptime(time, "%H:%M:%S %d.%m.%Y") for time in
+        list(datetime.strptime(time_string, "%H:%M:%S %d.%m.%Y") for time_string in
              df[time]))
 
 for _, row in df.iterrows():
