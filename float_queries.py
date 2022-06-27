@@ -107,8 +107,9 @@ class FloatQueries(InfluxBase):
             if convert_angles:
                 azimuth, tilt = self.pitch_roll_to_azimuth_tilt(transformed_arr[row]['a_x'],
                                                                 transformed_arr[row]['a_y'])
-                transformed_arr['azimuth'] = azimuth
-                transformed_arr['tilt'] = tilt
+
+                transformed_arr[row]['azimuth'] = azimuth
+                transformed_arr[row]['tilt'] = tilt
 
             row += 1
         return pd.DataFrame(data=transformed_arr, columns=field_names)

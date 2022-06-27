@@ -35,7 +35,7 @@ print(f"Writing data to {args.output_dir}\nReading times from {args.timestamp_fi
 db = FloatQueries(args.token)
 cropped_times = {}
 
-df = pd.read_csv("dataset_download_times.csv", sep=", ", engine='python')
+df = pd.read_csv(args.timestamp_file, sep=", ", engine='python')
 for time in "start_time", "end_time":
     df[time] = np.asarray(
         list(datetime.strptime(time_string, "%H:%M:%S %d.%m.%Y") for time_string in
